@@ -25,14 +25,25 @@ public class Ship : MonoBehaviour {
 		move();
 	}
 
-	void takeDamage(int dmg) {
-		hull-=dmg;
-		if (hull<=0)
+	public void takeDamage(bool IS, bool CH) {
+		int dmg=1;
+		if(CH)
+			dmg=2;
+		if(!IS){
+			shield-=dmg;
+			if(shield<0){
+				hull+=shield;
+				shield=0;
+			}
+		}
+		else
+			hull-=dmg;
+		if(hull<=0)
 			die();
 	}
 
 	void die() {
-		
+		Destroy(this.gameObject);
 	}
 
 	void move() {

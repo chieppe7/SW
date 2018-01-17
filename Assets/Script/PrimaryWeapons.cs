@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class PrimaryWeapons : MonoBehaviour {
 
-	public int type;
 	private int power;
-	private float cooldown=0.5f;
-	private float delay=0.1f;
+	public float cooldown=0.5f;
+	public float delay=0.1f;
 	private float delaya;
-	private float cycle=0.3f;
+	public float cycle=0.3f;
 	public Transform[] t;
 	public Rigidbody proj;
 	private bool shooting;
