@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ship : MonoBehaviour {
 
 	//ship properties
-	public string name;
+	public string Name;
 	public int hull;
 	public int shield;
 	public int power;

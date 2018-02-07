@@ -27,7 +27,7 @@ public class PrimaryWeapons : MonoBehaviour {
 
 	void Fire(Transform T) {
 		Rigidbody Clone = (Rigidbody) Instantiate(proj, T.position, T.rotation);
-		Clone.velocity = Clone.transform.TransformDirection(Vector3.forward * 30f);
+		Clone.velocity = Clone.transform.TransformDirection(Vector3.forward * 200f);
 	}
 
 	IEnumerator FireDelay(int i, int j) {
