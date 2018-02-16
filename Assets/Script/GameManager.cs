@@ -19,16 +19,31 @@ public class GameManager : MonoBehaviour {
         SC = GameObject.FindGameObjectWithTag("Score").GetComponent<Text>();
         StartCoroutine(Spawn());
         GameOver.gameObject.SetActive(false);
+        StartCoroutine(Scoreps());
 	}
+
+    IEnumerator Scoreps() {
+        yield return new WaitForSeconds(1f);
+        if (Player)
+        {
+            Score++;
+            StartCoroutine(Scoreps());
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
         SC.text = Score.ToString();
         GOSC.text = Score.ToString();
         if (!Player) {
-            GameOver.gameObject.SetActive(true);
+            StartCoroutine(delay());
         }
 	}
+
+    IEnumerator delay() {
+        yield return new WaitForSeconds(1f);
+        GameOver.gameObject.SetActive(true);
+    }
 
     IEnumerator Spawn() {
         yield return new WaitForSeconds(10f);

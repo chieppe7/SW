@@ -1,20 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class CamFollow : MonoBehaviour {
 
     private Transform Tgt;
+    private AudioListener A;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         Tgt = GameObject.FindGameObjectWithTag("Player").transform;
-        Debug.Log(Tgt);
+        A = this.gameObject.GetComponent<AudioListener>();
+        A.enabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = new Vector3(Tgt.position.x, 10f, Tgt.position.z);
-        Debug.Log(transform.position);
+        if (Tgt)
+        {
+            transform.position = new Vector3(Tgt.position.x, 10f, Tgt.position.z);
+            A.enabled = false;
+        }
+        else
+            A.enabled = true;
+            
 	}
 }

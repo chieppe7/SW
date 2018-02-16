@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 54478270697524882}
   m_Layer: 11
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1137887449397054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.43, y: 1, z: 0}
+  m_LocalPosition: {x: -683.51074, y: 0, z: 303}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4003808255158134}
@@ -119,7 +119,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 1830573f42aa91f44827d7d9e9157f93, type: 3}
+  - {fileID: 2100000, guid: 06ea40e783a1c7b409122865107fd00b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -188,6 +188,7 @@ MonoBehaviour:
   hull: 1
   shield: 1
   power: 1
+  Explode: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 2}
   cooldown: 0.5
   delay: 0.1
   cycle: 0.3

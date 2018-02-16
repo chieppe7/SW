@@ -9,7 +9,7 @@ public class EnemyShip : MonoBehaviour {
 	public int shield;
 	public int power;
 
-
+    public GameObject Explode;
 	public float cooldown=0.5f;
 	public float delay=0.1f;
 	private float delaya;
@@ -19,20 +19,22 @@ public class EnemyShip : MonoBehaviour {
 	private bool shooting;
     private Transform Player;
 
-    private void Start()
+    private void Awake()
     {
         Player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update () {
-		if(power>0 && !shooting && Vector3.Distance(Player.position,transform.position)<50f){
-			StartCoroutine(FireDelay(0,0));
-		}
+        if(Player)
+		    if(power>0 && !shooting && Vector3.Distance(Player.position,this.transform.position)<100f){
+			    StartCoroutine(FireDelay(0,0));
+		    }
 	}
 
     void die() {
         GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>().Score += 100;
+        Instantiate(Explode, this.transform.position, this.transform.rotation);
 		Destroy(this.gameObject);
 	}
 
@@ -55,6 +57,7 @@ public class EnemyShip : MonoBehaviour {
 
 	void Fire(Transform T) {
 		Rigidbody Clone = (Rigidbody) Instantiate(proj, T.position, T.rotation);
+        Clone.transform.Rotate(0.0f, Random.Range(-5f,5f), 0.0f);
 		Clone.velocity = Clone.transform.TransformDirection(Vector3.forward * 200f);
 	}
 

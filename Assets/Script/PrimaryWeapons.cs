@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PrimaryWeapons : MonoBehaviour {
 
@@ -10,8 +11,12 @@ public class PrimaryWeapons : MonoBehaviour {
 	private float delaya;
 	public float cycle=0.3f;
 	public Transform[] t;
+    public Transform[] m;
 	public Rigidbody proj;
+    public Rigidbody Missile;
 	private bool shooting;
+    private int AmmoM=2;
+    public Image I;
 
 	// Use this for initialization
 	void Start () {
@@ -23,11 +28,21 @@ public class PrimaryWeapons : MonoBehaviour {
 		if(Input.GetButton("Fire1") && power>0 && !shooting){
 			StartCoroutine(FireDelay(0,0));
 		}
+        if(Input.GetButtonDown("Fire2") && AmmoM>0){
+            FireOrdnance(m[AmmoM - 1]);
+            AmmoM--;
+            I.fillAmount = (float)AmmoM / 2f;
+		}
 	}
 
 	void Fire(Transform T) {
 		Rigidbody Clone = (Rigidbody) Instantiate(proj, T.position, T.rotation);
 		Clone.velocity = Clone.transform.TransformDirection(Vector3.forward * 200f);
+	}
+
+    void FireOrdnance(Transform T) {
+		Rigidbody Clone = (Rigidbody) Instantiate(Missile, T.position, T.rotation);
+		//Clone.AddForce(Clone.transform.forward * 200f, ForceMode.Impulse);
 	}
 
 	IEnumerator FireDelay(int i, int j) {

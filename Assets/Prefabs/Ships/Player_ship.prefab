@@ -147,7 +147,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ca4ee6505bfb8f247a8dee56cbd23844, type: 3}
+  - {fileID: 2100000, guid: de821a036e8ee154b95da9222f71f887, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -199,7 +199,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 2, z: 18}
+  m_Size: {x: 10, y: 5, z: 18}
   m_Center: {x: -0.5, y: 1, z: 0}
 --- !u!81 &81892082637577228
 AudioListener:
@@ -220,12 +220,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Player
-  hull: 6
-  shield: 4
+  hull: 1
+  shield: 3
   power: 2
   engine: 50
-  Speed: 50
+  Speed: 70
   turnSpeed: 0.5
+  Throttle: 0
+  HB: {fileID: 0}
+  FuelCanvas: {fileID: 0}
+  Fuel: 3
+  BoostF: 200
+  Explode: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 2}
 --- !u!114 &114609124598818870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -237,10 +243,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf3670c3bcfb9e48bf284d1d7f45c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 0.5
-  delay: 0.1
-  cycle: 0.3
+  cooldown: 0.3
+  delay: 0.01
+  cycle: 0.1
   t:
   - {fileID: 4759185279479138}
   - {fileID: 4828231967727340}
+  m:
+  - {fileID: 4759185279479138}
+  - {fileID: 4828231967727340}
   proj: {fileID: 54421347354154202, guid: b14991a89d5a7c94783f9dd144e7410b, type: 2}
+  Missile: {fileID: 54620716970198996, guid: f49a00e7b196c5240b16415d567424d9, type: 2}
+  I: {fileID: 0}
