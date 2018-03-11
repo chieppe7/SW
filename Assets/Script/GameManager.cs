@@ -11,9 +11,11 @@ public class GameManager : MonoBehaviour {
     private Text SC;
     public Text GOSC;
     public Image GameOver;
+    public UpgradesManager UM;
+    private bool save = false;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         Player = GameObject.FindGameObjectWithTag("Player");
         Score = 0;
         SC = GameObject.FindGameObjectWithTag("Score").GetComponent<Text>();
@@ -35,14 +37,16 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         SC.text = Score.ToString();
         GOSC.text = Score.ToString();
-        if (!Player) {
+        if (!Player && !save) {
             StartCoroutine(delay());
+            GameOverCall();
+            save = true;
         }
 	}
 
     IEnumerator delay() {
         yield return new WaitForSeconds(1f);
-        GameOver.gameObject.SetActive(true);
+        gameObject.GetComponent<SceneLoader>().Inst();
     }
 
     IEnumerator Spawn() {
@@ -51,6 +55,11 @@ public class GameManager : MonoBehaviour {
             Instantiate(Enemy, RandomPos(), Player.transform.rotation);
             StartCoroutine(Spawn());
         }
+    }
+
+    void GameOverCall() {
+        UM.Money += Score;
+        UM.SaveF();
     }
 
     private Vector3 RandomPos() {

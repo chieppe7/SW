@@ -20,6 +20,7 @@ public class Ship : MonoBehaviour {
     public Image FuelCanvas;
     public int Fuel;
     public float BoostF;
+    public int maxhull;
 
     public GameObject Explode;
 
@@ -30,6 +31,8 @@ public class Ship : MonoBehaviour {
 		rig = gameObject.GetComponent<Rigidbody>();
         BSpeed = 2f * Speed;
         ASpeed = Speed;
+        if(FuelCanvas)
+            FuelCanvas.fillAmount = (float)Fuel / 5f;
 	}
 	
 	// Update is called once per frame
@@ -38,7 +41,6 @@ public class Ship : MonoBehaviour {
             Boost();
         }
 		move();
-        HB.fillAmount = (float)shield / 3f;
 	}
 
     void Boost() {
@@ -48,7 +50,7 @@ public class Ship : MonoBehaviour {
         if (Throttle < 0.1 || Fuel <= 0)
             return;
         Fuel--;
-        FuelCanvas.fillAmount = (float)Fuel / 3f;
+        FuelCanvas.fillAmount = (float)Fuel / 5f;
         Vector3 BoostV = new Vector3(h, 0f, v);
         rig.AddForce(BoostV*BoostF, ForceMode.Impulse);
         StartCoroutine(Spidi());
@@ -75,6 +77,7 @@ public class Ship : MonoBehaviour {
 			hull-=dmg;
 		if(hull<=0)
 			die();
+        HB.fillAmount = (float)shield/8f;
 	}
 
 	void die() {

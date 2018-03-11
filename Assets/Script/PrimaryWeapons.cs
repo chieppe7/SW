@@ -15,12 +15,14 @@ public class PrimaryWeapons : MonoBehaviour {
 	public Rigidbody proj;
     public Rigidbody Missile;
 	private bool shooting;
-    private int AmmoM=2;
+    public int AmmoM;
     public Image I;
 
 	// Use this for initialization
 	void Start () {
 		power = gameObject.GetComponent<Ship>().power;
+        if(I)
+            I.fillAmount = (float)AmmoM / 6f;
 	}
 	
 	// Update is called once per frame
@@ -29,9 +31,9 @@ public class PrimaryWeapons : MonoBehaviour {
 			StartCoroutine(FireDelay(0,0));
 		}
         if(Input.GetButtonDown("Fire2") && AmmoM>0){
-            FireOrdnance(m[AmmoM - 1]);
+            FireOrdnance(m[(AmmoM-1)/3]);
             AmmoM--;
-            I.fillAmount = (float)AmmoM / 2f;
+            I.fillAmount = (float)AmmoM / 6f;
 		}
 	}
 

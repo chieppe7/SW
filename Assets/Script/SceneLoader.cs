@@ -8,14 +8,11 @@ public class SceneLoader : MonoBehaviour {
 
     private bool iI=false;
     public Image I;
-
-    private void Update()
-    {
-        if(I)
-            I.gameObject.SetActive(iI);
-    }
+    private bool iU=false;
+    public Image U;
 
     public void StartGame() {
+        Debug.Log("Start");
         SceneManager.LoadScene("Test");
     }
 
@@ -25,10 +22,16 @@ public class SceneLoader : MonoBehaviour {
 
     public void Inst() {
         iI = !iI;
+        I.gameObject.SetActive(iI);
     }
 
-    public void Credits() {
-        
+    public void Upgadres() {
+        iU = !iU;
+        U.gameObject.SetActive(iU);
+    }
+
+    public void Menu() {
+        SceneManager.LoadScene("Menu");
     }
 
 }

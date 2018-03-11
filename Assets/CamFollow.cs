@@ -8,6 +8,9 @@ public class CamFollow : MonoBehaviour {
     private Transform Tgt;
     private AudioListener A;
 
+    public AudioSource AS;
+    private bool sound=false;
+
 	// Use this for initialization
 	void Awake () {
         Tgt = GameObject.FindGameObjectWithTag("Player").transform;
@@ -24,6 +27,15 @@ public class CamFollow : MonoBehaviour {
         }
         else
             A.enabled = true;
+
+        if (sound)
+            AS.volume = 1;
+        else
+            AS.volume = 0;
             
 	}
+
+    public void ToggleAudio() {
+        sound = !sound;
+    }
 }
